@@ -8,12 +8,10 @@ public class GameColors : MonoBehaviour
     public int wynik;
     public int wynikCave;
     [SerializeField] private WynikNormal wynikNormal;
-    public Image Gora;
-    public Image Dol;
     public Text DotknijAby;
     public Text GameTitle;
     public Text wynikTxt;
-    public Image[] front = new Image[0];
+    public SpriteRenderer[] front = new SpriteRenderer[0];
     Color StartowyBG, KoncowyBG, KameraStart, KameraKoniec;
     public int StartZmianyKoloru = 0;
     float f = 0f;

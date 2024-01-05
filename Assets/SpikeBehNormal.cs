@@ -12,9 +12,9 @@ public class SpikeBehNormal : MonoBehaviour
     public string Mode = "Normal";
     int liczbaKolcow;
     public Animator animL;
-    public Animator animLTop;
     public Animator animR;
     public Animator animRTop;
+    public Animator animLTop;
     private int odJakiego = 0;
     int a = 0;
     public int caveWynik;
@@ -35,7 +35,8 @@ public class SpikeBehNormal : MonoBehaviour
     }
     private IEnumerator LewoDisable()
     {
-        if(Mode != "Cave") yield return new WaitForSeconds(0.6f);
+        animL.SetTrigger("Hide");
+        if (Mode != "Cave") yield return new WaitForSeconds(0.6f);
         foreach (GameObject spike in SpikesLewo)
         {
             spike.SetActive(false);
@@ -83,6 +84,7 @@ public class SpikeBehNormal : MonoBehaviour
     }
     private IEnumerator PrawoDisable()
     {
+        animR.SetTrigger("Hide");
         if (Mode != "Cave") yield return new WaitForSeconds(0.6f);
         foreach (GameObject spike in SpikesPrawo)
         {
@@ -135,28 +137,20 @@ public class SpikeBehNormal : MonoBehaviour
         if (collision.gameObject.CompareTag("Lewo"))
         {
             Lewo();
-            if (Mode != "Cave")
-            {
                 animR.SetTrigger("Touch");
-                animLTop.SetTrigger("Hide");
-            }
             if (Mode == "Hard")
             {
-                animR.SetTrigger("Shake");
+                animRTop.SetTrigger("Shake");
             }
         }
 
         else if (collision.gameObject.CompareTag("Prawo"))
         {
             Prawo();
-            if (Mode != "Cave")
-            {
                 animL.SetTrigger("Touch");
-                animRTop.SetTrigger("Hide");
-            }
             if (Mode == "Hard")
             {
-                animL.SetTrigger("Shake");
+                animLTop.SetTrigger("Shake");
             }
         }
     }

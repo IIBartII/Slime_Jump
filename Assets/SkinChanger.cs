@@ -18,6 +18,7 @@ public class SkinChanger : MonoBehaviour
     public GameObject infob;
     public GameObject unlockPanel;
     public Text candyammount;
+    public bool OpenQmark = false;
     private void Awake()
     {
         if (PlayerPrefs.HasKey("Kolor"))
@@ -59,9 +60,13 @@ public class SkinChanger : MonoBehaviour
     }
     public void Unlock(string kolor)
     {
+        if(!OpenQmark)
+        {
+        OpenQmark = true;
         Instantiate(unlockPanel,new Vector3 (0,0,0), Quaternion.identity);
         PlayerPrefs.SetString("WhatToUnlock", kolor);
         //PlayerPrefs.SetString(kolor,kolor);
+        }
     }
     #region kolory
     public void Zielony()

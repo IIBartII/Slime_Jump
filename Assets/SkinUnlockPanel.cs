@@ -10,14 +10,22 @@ public class SkinUnlockPanel : MonoBehaviour
 
     public delegate void KolorOdblokowany(string kolor);
     public static event KolorOdblokowany OnKolorOdblokowany;
-
+    public SkinChanger skinChanger;
+    public GameObject mCamera;
     public GameObject NotEnoughMoney;
+    public void Start()
+    {
+        mCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        skinChanger = mCamera.GetComponent<SkinChanger>();
+    }
     public void No()
     {
         Destroy(this.gameObject);
+        skinChanger.OpenQmark = false;
     }
     public void Yes()
     {
+        skinChanger.OpenQmark = false;
         WhatToUnlock = PlayerPrefs.GetString("WhatToUnlock");
         Candy = PlayerPrefs.GetInt("CandyA");
 #if UNITY_EDITOR
